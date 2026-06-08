@@ -14,11 +14,11 @@ const projects = [
     github: "https://github.com/ShreyaSaha18/Personal_Portfolio",
   },
   {
-    title: "Project Management Tool",
+    title: "AI Interview Prep App",
     description:
-      "A collaborative workspace for teams with real-time updates, task tracking, and integrations.",
+      "A full-stack AI interview platform where users practice role-specific questions via voice, receive instant AI feedback, and track performance across sessions.",
     image: "/projects/prepwise_card.png",
-    tags: ["Next.js", "Socket.io", "MongoDB", "Redis"],
+    tags: ["Next.js", "Vapi AI", "Firebase", "Tailwind"],
     link: "https://ai-mock-interviews-three-omega.vercel.app/",
     github: "https://github.com/ShreyaSaha18/ai_mock_interviews",
   },
