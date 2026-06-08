@@ -11,16 +11,16 @@ const projects = [
     image: "/projects/project1.png",
     tags: ["React", "Node.js", "MongoDB"],
     link: "https://my-blog-app-brown.vercel.app/",
-    github: "https://github.com/ShreyaSaha18",
+    github: "https://github.com/ShreyaSaha18/Personal_Portfolio",
   },
   {
     title: "Project Management Tool",
     description:
       "A collaborative workspace for teams with real-time updates, task tracking, and integrations.",
-    image: "/projects/project4.png",
+    image: "/projects/prepwise_card.png",
     tags: ["Next.js", "Socket.io", "MongoDB", "Redis"],
-    link: "https://my-blog-app-brown.vercel.app/",
-    github: "https://github.com/ShreyaSaha18",
+    link: "https://ai-mock-interviews-three-omega.vercel.app/",
+    github: "https://github.com/ShreyaSaha18/ai_mock_interviews",
   },
 ];
 
