@@ -28,7 +28,7 @@ const projects = [
       "A playful AI web app that turns a git diff into a poem — plus a clean Conventional Commit message underneath. Built with Python and Gradio, powered by Google Gemini's free tier, with graceful fallbacks so it never breaks.",
     image: "/projects/commit-poet.svg",
     tags: ["Python", "Gradio", "Gemini", "LLM"],
-    link: "https://github.com/ShreyaSaha18/commit-message-poet",
+    link: "https://commit-message-poet.onrender.com/",
     github: "https://github.com/ShreyaSaha18/commit-message-poet",
   },
 ];
