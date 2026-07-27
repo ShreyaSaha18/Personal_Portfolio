@@ -31,6 +31,15 @@ const projects = [
     link: "https://commit-message-poet.onrender.com/",
     github: "https://github.com/ShreyaSaha18/commit-message-poet",
   },
+  {
+    title: "System Design Lab",
+    description:
+      "A day-by-day system design learning series — each lesson pairs a concept (capacity estimation, load balancing, sharding, caching) with a small interactive tool you can actually play with, not just read about.",
+    image: "/projects/system-design-lab.svg",
+    tags: ["JavaScript", "System Design", "Vercel"],
+    link: "https://system-design-learning-nu.vercel.app/",
+    github: "https://github.com/ShreyaSaha18/system-design-learning",
+  },
 ];
 
 const Projects = () => {
