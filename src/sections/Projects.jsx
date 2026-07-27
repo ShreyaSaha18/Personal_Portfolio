@@ -22,6 +22,15 @@ const projects = [
     link: "https://ai-mock-interviews-three-omega.vercel.app/",
     github: "https://github.com/ShreyaSaha18/ai_mock_interviews",
   },
+  {
+    title: "Commit Message Poet",
+    description:
+      "A playful AI web app that turns a git diff into a poem — plus a clean Conventional Commit message underneath. Built with Python and Gradio, powered by Google Gemini's free tier, with graceful fallbacks so it never breaks.",
+    image: "/projects/commit-poet.svg",
+    tags: ["Python", "Gradio", "Gemini", "LLM"],
+    link: "https://github.com/ShreyaSaha18/commit-message-poet",
+    github: "https://github.com/ShreyaSaha18/commit-message-poet",
+  },
 ];
 
 const Projects = () => {
@@ -70,7 +79,6 @@ const Projects = () => {
                  to-transparent opacity-60"
                 />
                 {/* Overlay Links */}
-                // ✅ change to this
                 <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                   {" "}
                   <a
