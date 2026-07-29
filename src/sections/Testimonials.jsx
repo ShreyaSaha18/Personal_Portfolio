@@ -1,151 +1,72 @@
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { useState } from "react";
+import { Target, ShieldCheck, Sparkles, Users } from "lucide-react";
 
-const testimonials = [
+const strengths = [
   {
-    quote:
-      "Shreya is one of the most talented engineers I've worked with. Her attention to detail and ability to translate complex requirements into elegant solutions is remarkable.",
-    author: "Sarah Chen",
-    role: "CTO, Tech Innovators Inc.",
-    avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+    icon: Target,
+    title: "End-to-End Ownership",
+    description:
+      "I take features from requirement and design through implementation, deployment, and go-live — owning outcomes, not just tickets.",
   },
   {
-    quote:
-      "Working with Shreya was a game-changer for our project. She delivered ahead of schedule with code quality that set a new standard for our team.",
-    author: "Michael Rodriguez",
-    role: "Product Manager, Digital Solutions",
-    avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop",
+    icon: ShieldCheck,
+    title: "Security & Compliance",
+    description:
+      "Delivered secure, compliance-critical systems for banking and telecom clients — JWT authentication, Spring Security RBAC, and audit-ready workflows.",
   },
   {
-    quote:
-      "Shreya's expertise in React and TypeScript helped us rebuild our entire frontend in record time. Her architectural decisions continue to pay dividends.",
-    author: "Emily Watson",
-    role: "Engineering Lead, StartUp Labs",
-    avatar:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
+    icon: Sparkles,
+    title: "AI-Augmented Engineering",
+    description:
+      "I ship faster with AI dev tools like GitHub Copilot and Amazon Q, and build LLM-powered products on the side — pairing solid engineering with modern AI.",
   },
   {
-    quote:
-      "Not only is Shreya technically brilliant, but she's also a fantastic communicator and team player. She elevated everyone around her.",
-    author: "David Kim",
-    role: "CEO, Innovation Hub",
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+    icon: Users,
+    title: "Cross-Functional Delivery",
+    description:
+      "I translate business needs into architecture and collaborate across backend, frontend, and QA in Agile teams to align on the most effective solution.",
   },
 ];
 
 export const Testimonials = () => {
-  const [activeIdx, setActiveIdx] = useState(0);
-
-  const next = () => {
-    setActiveIdx((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const previous = () => {
-    setActiveIdx(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length,
-    );
-  };
   return (
-    <section id="testimonials" className="py-32 relative overflow-hidden">
-      <div
-        className="absolute top-1/2 left-1/2
-       w-[800px] h-[800px] bg-primary/5
-        rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"
-      />
-      <div
-        className="container mx-auto 
-      px-6 relative z-10"
-      >
+    <section id="strengths" className="py-32 relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div
-          className="text-center max-w-3xl 
-        mx-auto mb-16"
-        >
-          <span
-            className="text-secondary-foreground 
-          text-sm font-medium tracking-wider 
-          uppercase animate-fade-in"
-          >
-            What People Say
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
+            What I Bring
           </span>
-          <h2
-            className="text-4xl md:text-5xl 
-          font-bold mt-4 mb-6 animate-fade-in 
-          animation-delay-100 text-secondary-foreground"
-          >
-            Kind words from{" "}
-            <span
-              className="font-serif italic 
-            font-normal text-white"
-            >
-              amazing people.
+          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
+            More than code —{" "}
+            <span className="font-serif italic font-normal text-white">
+              value to your team.
             </span>
           </h2>
+          <p className="text-muted-foreground animate-fade-in animation-delay-200">
+            The strengths I bring to a product team, shaped by four years
+            delivering backend systems for enterprise clients.
+          </p>
         </div>
 
-        {/* Testimonial Carousel */}
-        <div className="max-w-4xl mx-auto">
-          <div className="relative">
-            {/* Main Testimonial */}
-            <div className="glass p-8 rounded-3xl md:p-12 glow-border animate-fade-in animation-delay-200">
-              <div className="absolute -top-4 left-8 w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                <Quote className="w-6 h-6 text-primary-foreground" />
+        {/* Strengths Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {strengths.map((item, idx) => (
+            <div
+              key={idx}
+              className="glass p-6 rounded-2xl animate-fade-in hover:border-primary/40 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
+              style={{ animationDelay: `${(idx + 1) * 100}ms` }}
+            >
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 hover:bg-primary/20">
+                <item.icon className="w-6 h-6 text-primary" />
               </div>
-
-              <blockquote className="text-xl md:text-2xl font-medium leading-relaxed mb-8 pt-4">
-                "{testimonials[activeIdx].quote}"
-              </blockquote>
-
-              <div className="flex items-center gap-4">
-                <img
-                  src={testimonials[activeIdx].avatar}
-                  alt={testimonials[activeIdx].author}
-                  className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/20"
-                />
-                <div>
-                  <div className="font-semibold">
-                    {testimonials[activeIdx].author}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    {testimonials[activeIdx].role}
-                  </div>
-                </div>
-              </div>
+              <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+              <p className="text-sm text-muted-foreground">
+                {item.description}
+              </p>
             </div>
-
-            {/* Testimonials Navigation */}
-            <div className="flex items-center justify-center gap-4 mt-8">
-              <button
-                className="p-3 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all"
-                onClick={previous}
-              >
-                <ChevronLeft />
-              </button>
-
-              <div className="flex gap-2">
-                {testimonials.map((_, idx) => (
-                  <button
-                    onClick={() => setActiveIdx(idx)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      idx === activeIdx
-                        ? "w-8 bg-primary"
-                        : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <button
-                onClick={next}
-                className="p-3 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all"
-              >
-                <ChevronRight />
-              </button>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

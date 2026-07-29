@@ -72,7 +72,7 @@ const Projects = () => {
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className="group glass rounded-2xl overflow-hidden animate-fade-in md:row-span-1"
+              className="group glass rounded-2xl overflow-hidden animate-fade-in md:row-span-1 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/30"
               style={{ animationDelay: `${(idx + 1) * 100}ms` }}
             >
               {/* Image */}
@@ -136,7 +136,11 @@ const Projects = () => {
 
         {/* {View all Projects cta} */}
         <div className="text-center mt-12 animate-fade-in animation-delay-500">
-          <AnimatedBorderButton>
+          <AnimatedBorderButton
+            href="https://github.com/ShreyaSaha18"
+            target="_blank"
+            rel="noreferrer"
+          >
             View All Projects <ArrowRight className="w-5 h-5" />
           </AnimatedBorderButton>
         </div>

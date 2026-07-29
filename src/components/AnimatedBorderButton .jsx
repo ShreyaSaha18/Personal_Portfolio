@@ -1,8 +1,14 @@
 import { Download } from "lucide-react";
 
-export const AnimatedBorderButton = ({ children, href, download }) => {
+export const AnimatedBorderButton = ({
+  children,
+  href,
+  download,
+  target,
+  rel,
+}) => {
   return (
-    <a href={href} download={download}>
+    <a href={href} download={download} target={target} rel={rel}>
       <button
         className="relative bg-transparent border border-border 
         text-foreground hover:border-primary/50 transition-all 

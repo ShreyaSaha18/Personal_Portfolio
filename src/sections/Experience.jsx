@@ -1,21 +1,35 @@
 import React from "react";
 const experiences = [
   {
-    period: "2025 — Present",
-    role: "Full Stack Engineer",
+    period: "Apr 2025 — Present",
+    role: "Software Engineering Professional",
     company: "British Telecom",
     description:
-      "Leading frontend architecture for a suite of fintech products. Implemented micro-frontend architecture, reduced bundle size by 40%, and mentored a team of 5 developers.",
-    technologies: ["React", "TypeScript", "Next.js", "GraphQL"],
+      "Architect distributed, event-driven Spring Boot microservices sustaining zero-downtime across systems handling 1M+ requests/day. Cut API latency 30–35% with Redis caching, SQL query tuning, and JMeter load testing, and hardened services with Resilience4j and Spring Security RBAC. Drove end-to-end observability with Dynatrace, reducing MTTR by 35%, while maintaining 95%+ test coverage and shipping via Docker, Kubernetes, and Jenkins/GitLab CI/CD. Accelerate delivery with AI-assisted development using GitHub Copilot, Amazon Q, and Kiro.",
+    technologies: [
+      "Java",
+      "Spring Boot",
+      "Microservices",
+      "Kubernetes",
+      "Dynatrace",
+      "GitHub Copilot",
+    ],
     current: true,
   },
   {
-    period: "2021 — 2025",
-    role: "Backend Engineer",
-    company: "Cognizant Solutions",
+    period: "Dec 2021 — Apr 2025",
+    role: "Software Engineer",
+    company: "Cognizant Technology Solutions",
     description:
-      "Built and maintained multiple React applications for enterprise clients. Introduced automated testing practices that improved code coverage to 85%.",
-    technologies: ["React", "Redux", "Jest", "Cypress"],
+      "Delivered backend and full-stack solutions for enterprise clients (Verizon, US Bank, Batory Foods). Migrated legacy Scala services to a layered Spring Boot architecture, built secure JWT and Spring Security RBAC flows for compliance-critical core-banking modules, and defined Swagger REST API contracts that cut partner onboarding time by 40%. Owned features end-to-end — from client sign-off through backend implementation and deployment — improving delivery speed by 25%.",
+    technologies: [
+      "Java",
+      "Spring Boot",
+      "Spring Security",
+      "SQL Server",
+      "React.js",
+      "REST APIs",
+    ],
     current: false,
   },
 ];
@@ -52,8 +66,9 @@ const Experience = () => {
             className="text-muted-foreground
            animate-fade-in animation-delay-200"
           >
-            A timeline of my professional growth, from curious beginner to
-            senior engineer leading teams and building products at scale.
+            A timeline of my work as a backend-focused software engineer —
+            from enterprise client delivery at Cognizant to high-throughput
+            distributed systems at British Telecom.
           </p>
         </div>
 

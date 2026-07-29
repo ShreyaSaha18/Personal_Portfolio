@@ -50,10 +50,10 @@ const Hero = () => {
 
       {/* Green Dots */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
+        {[...Array(14)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1.5 h-1.5 rounded-full opacity-60"
+            className="absolute w-1.5 h-1.5 rounded-full opacity-40"
             style={{
               backgroundColor: "#20B2A6",
               left: `${Math.random() * 100}%`,
@@ -146,7 +146,7 @@ const Hero = () => {
                   </div>
                 </div>
                 <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animation-delay-500">
-                  <div className="text-2xl font-bold text-primary">4+</div>
+                  <div className="text-2xl font-bold text-highlight">4+</div>
                   <div className="text-xs text-muted-foreground">
                     Years of Experience
                   </div>
