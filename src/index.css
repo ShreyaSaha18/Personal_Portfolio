@@ -129,6 +129,111 @@
     animation: marquee 30s linear infinite;
   }
 
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Entrance for content that appears after an action, e.g. form status. */
+  .animate-rise-in {
+    animation: rise-in 0.3s ease-out both;
+  }
+
+  /* Ambient drift for decorative background blobs. */
+  .animate-drift {
+    animation: slow-drift 32s ease-in-out infinite;
+  }
+
+  .animate-drift-slow {
+    animation: slow-drift 48s ease-in-out infinite reverse;
+  }
+
+  /* Aurora: blobs that morph shape as they drift, so the backdrop reads as a
+     slow video loop rather than moving circles. Long, mismatched cycles keep
+     the three from ever visibly repeating together. */
+  @keyframes aurora-a {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+      border-radius: 60% 40% 55% 45%;
+    }
+    33% {
+      transform: translate(60px, -40px) scale(1.15);
+      border-radius: 40% 60% 35% 65%;
+    }
+    66% {
+      transform: translate(-40px, 30px) scale(0.9);
+      border-radius: 55% 45% 65% 35%;
+    }
+  }
+
+  @keyframes aurora-b {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1.05);
+      border-radius: 45% 55% 40% 60%;
+    }
+    40% {
+      transform: translate(-70px, 50px) scale(0.85);
+      border-radius: 65% 35% 55% 45%;
+    }
+    70% {
+      transform: translate(40px, 60px) scale(1.2);
+      border-radius: 35% 65% 45% 55%;
+    }
+  }
+
+  @keyframes aurora-c {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(0.95);
+      border-radius: 50% 50% 60% 40%;
+    }
+    50% {
+      transform: translate(50px, 70px) scale(1.25);
+      border-radius: 60% 40% 40% 60%;
+    }
+  }
+
+  .animate-aurora-a {
+    animation: aurora-a 28s ease-in-out infinite;
+  }
+
+  .animate-aurora-b {
+    animation: aurora-b 37s ease-in-out infinite;
+  }
+
+  .animate-aurora-c {
+    animation: aurora-c 45s ease-in-out infinite;
+  }
+
+  /* The Send icon flies off when a message goes through. */
+  @keyframes plane-launch {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(90px, -70px) rotate(25deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-plane-launch {
+    animation: plane-launch 0.7s cubic-bezier(0.4, 0, 0.8, 0.2) forwards;
+  }
+
+  /* Elements revealed on scroll start hidden, then get .animate-fade-in. */
+  .reveal-hidden {
+    opacity: 0;
+  }
+
   .animation-delay-100 {
     animation-delay: 100ms;
   }
@@ -180,5 +285,23 @@
     box-shadow: 0 0 40px
         color-mix(in srgb, var(--color-primary) 35%, transparent),
       0 0 80px color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+}
+
+/* Respect the OS "reduce motion" setting: keep everything visible, drop the
+   movement. Content revealed on scroll must stay opaque, hence the override
+   on .reveal-hidden. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-hidden {
+    opacity: 1 !important;
   }
 }
