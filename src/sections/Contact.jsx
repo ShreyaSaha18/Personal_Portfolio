@@ -8,26 +8,32 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/Button";
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
+
+// Inbox that receives contact-form submissions.
+const OWNER_EMAIL = "shreya20211@gmail.com";
+
+// Web3Forms delivers submissions to the address this key is registered to.
+// Access keys are public by design — they are safe to ship in client code.
+const WEB3FORMS_ACCESS_KEY = "98d094d9-11e9-4b8c-9d3d-b7a58de8463f";
 
 const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "shreya20211@gmail.com",
-    href: "mailto:shreya20211@gmail.com",
+    value: OWNER_EMAIL,
+    href: `mailto:${OWNER_EMAIL}`,
   },
   {
     icon: Phone,
     label: "Phone",
     value: "+91 9875670007",
-    href: "tel:+ 9875670007",
+    href: "tel:+919875670007",
   },
   {
     icon: MapPin,
     label: "Location",
     value: "Bangalore, India",
-    href: "#",
+    href: null,
   },
 ];
 
@@ -43,32 +49,51 @@ export const Contact = () => {
     message: "",
   });
 
+  const mailtoHref = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(
+    `Portfolio enquiry from ${formData.name.trim() || "your site"}`
+  )}&body=${encodeURIComponent(
+    `${formData.message.trim()}\n\n—\n${formData.name.trim()}\n${formData.email.trim()}`
+  )}`;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
+
+    if (!name || !email || !message) {
+      setSubmitStatus({
+        type: "error",
+        message: "Please fill in your name, email and message.",
+      });
+      return;
+    }
+
     setIsLoading(true);
     setSubmitStatus({ type: null, message: "" });
+
     try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-      if (!serviceId || !templateId || !publicKey) {
-        throw new Error(
-          "EmailJS configuration is missing. Please check your environment variables."
-        );
-      }
-
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        publicKey
-      );
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Portfolio enquiry from ${name}`,
+          from_name: "Portfolio Contact Form",
+          name,
+          email,
+          message,
+        }),
+      });
+
+      const data = await res.json();
+      if (!data.success) {
+        throw new Error(data.message || "Submission failed.");
+      }
 
       setSubmitStatus({
         type: "success",
@@ -76,11 +101,13 @@ export const Contact = () => {
       });
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
-      console.error("EmailJS error:", err);
+      // Keep provider detail in the console; give the visitor a way through.
+      console.error("Web3Forms error:", err);
       setSubmitStatus({
         type: "error",
+        showFallback: true,
         message:
-          err?.text || "Failed to send message. Please try again later.",
+          "Something went wrong while sending. You can email me directly instead — your message is saved below.",
       });
     } finally {
       setIsLoading(false);
@@ -123,7 +150,9 @@ export const Contact = () => {
                 </label>
                 <input
                   id="name"
+                  name="name"
                   type="text"
+                  autoComplete="name"
                   required
                   placeholder="Your name..."
                   value={formData.name}
@@ -143,7 +172,9 @@ export const Contact = () => {
                 </label>
                 <input
                   id="email"
+                  name="email"
                   type="email"
+                  autoComplete="email"
                   required
                   placeholder="your@email.com"
                   value={formData.email}
@@ -162,6 +193,8 @@ export const Contact = () => {
                   Message
                 </label>
                 <textarea
+                  id="message"
+                  name="message"
                   rows={5}
                   required
                   value={formData.message}
@@ -191,7 +224,9 @@ export const Contact = () => {
 
               {submitStatus.type && (
                 <div
-                  className={`flex items-center gap-3
+                  role="status"
+                  aria-live="polite"
+                  className={`flex items-start gap-3
                      p-4 rounded-xl ${
                        submitStatus.type === "success"
                          ? "bg-green-500/10 border border-green-500/20 text-green-400"
@@ -203,7 +238,17 @@ export const Contact = () => {
                   ) : (
                     <AlertCircle className="w-5 h-5 flex-shrink-0" />
                   )}
-                  <p className="text-sm">{submitStatus.message}</p>
+                  <div>
+                    <p className="text-sm">{submitStatus.message}</p>
+                    {submitStatus.showFallback && (
+                      <a
+                        href={mailtoHref}
+                        className="text-sm font-medium underline underline-offset-4 hover:no-underline break-all"
+                      >
+                        Email {OWNER_EMAIL} directly
+                      </a>
+                    )}
+                  </div>
                 </div>
               )}
             </form>
@@ -216,23 +261,26 @@ export const Contact = () => {
                 Contact Information
               </h3>
               <div className="space-y-4">
-                {contactInfo.map((item, i) => (
-                  <a
-                    key={i}
-                    href={item.href}
-                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface transition-colors group"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <item.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">
-                        {item.label}
+                {contactInfo.map((item, i) => {
+                  const Wrapper = item.href ? "a" : "div";
+                  return (
+                    <Wrapper
+                      key={i}
+                      {...(item.href ? { href: item.href } : {})}
+                      className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface transition-colors group"
+                    >
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <item.icon className="w-5 h-5 text-primary" />
                       </div>
-                      <div className="font-medium">{item.value}</div>
-                    </div>
-                  </a>
-                ))}
+                      <div>
+                        <div className="text-sm text-muted-foreground">
+                          {item.label}
+                        </div>
+                        <div className="font-medium">{item.value}</div>
+                      </div>
+                    </Wrapper>
+                  );
+                })}
               </div>
             </div>
 
