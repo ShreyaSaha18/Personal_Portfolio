@@ -5,6 +5,15 @@ import { AnimatedBorderButton } from "../components/AnimatedBorderButton ";
 
 const projects = [
   {
+    title: "Incident Copilot",
+    description:
+      "An AI agent that automates the first pass of on-call incident triage. A Python LangGraph agent investigates a service's health, errors, and latency over a Java Spring Boot API, then writes a structured incident report — with least-privilege tool design, guardrails, and an eval suite.",
+    image: "/projects/incident-copilot.svg",
+    tags: ["Java", "Spring Boot", "LangGraph", "Gemini", "Python"],
+    link: "https://ops-api-nusn.onrender.com/swagger.html",
+    github: "https://github.com/ShreyaSaha18/incident-copilot",
+  },
+  {
     title: "Blog Application",
     description:
       "A full-stack blog application built with React, Node.js, and MongoDB. Users can create, read, update, and delete blog posts. The application features user authentication and a responsive design.",
