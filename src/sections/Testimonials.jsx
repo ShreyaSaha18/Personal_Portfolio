@@ -45,7 +45,7 @@ export const Testimonials = () => {
             </span>
           </h2>
           <p className="text-muted-foreground animate-fade-in animation-delay-200">
-            The strengths I bring to a product team, shaped by four years
+            The strengths I bring to a product team, shaped by five years
             delivering backend systems for enterprise clients.
           </p>
         </div>

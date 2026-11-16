@@ -50,7 +50,7 @@ export const About = () => {
 
             <div className="space-y-4 text-muted-foreground animate-fade-in animation-delay-200">
               <p>
-                I'm a Full Stack Developer with 4+ years of experience, focused
+                I'm a Full Stack Developer with 5 years of experience, focused
                 heavily on backend engineering — designing distributed systems,
                 microservices architecture, and high-throughput APIs using Java
                 and Spring Boot at British Telecom and Cognizant.

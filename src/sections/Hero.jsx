@@ -89,7 +89,7 @@ const Hero = () => {
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
-                Hi, I am Shreya Saha — a Full Stack Developer with 4+ years of
+                Hi, I am Shreya Saha — a Full Stack Developer with 5 years of
                 experience building high-throughput microservices, RESTful APIs,
                 and cloud-native systems using Java, Spring Boot, and React.js.
                 Currently at British Telecom, architecting backends that handle
@@ -144,7 +144,7 @@ const Hero = () => {
                   </div>
                 </div>
                 <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animation-delay-500">
-                  <div className="text-2xl font-bold text-highlight">4+</div>
+                  <div className="text-2xl font-bold text-highlight">5</div>
                   <div className="text-xs text-muted-foreground">
                     Years of Experience
                   </div>
