@@ -102,8 +102,8 @@ const Hero = () => {
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>
               <AnimatedBorderButton
-                href="/Shreya Saha_Resume.pdf"
-                download="Shreya Saha_Resume.pdf"
+                href="/Shreya_Saha_Software_Engineer.pdf"
+                download="Shreya_Saha_Software_Engineer.pdf"
               >
                 <Download className="w-5 h-5" /> Download CV
               </AnimatedBorderButton>
